@@ -3,90 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>48 Hours UKG</title>
+    <title>Customer Self-Service Portal</title>
     <style>
+        /* Add your styles here */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #4caf50; /* UKG green */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
-
-        .container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            max-width: 100%;
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
             text-align: center;
         }
-
-        h1 {
-            color: #4caf50; /* UKG green */
-            font-size: 32px;
+        section {
+            margin-top: 20px;
         }
-
-        h2 {
-            color: #333;
-            font-size: 18px;
-            margin-bottom: 20px;
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
         }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            box-sizing: border-box;
-            font-size: 16px;
+        label {
+            margin-bottom: 5px;
         }
-
+        input, textarea {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
         button {
-            background-color: #333; /* Dark grey */
-            color: #ffffff;
-            padding: 10px 20px;
-            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
-
         button:hover {
-            background-color: #555; /* Slightly darker grey */
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>48 Hours UKG</h1>
-        <h2>Developed by Danish, Vaibhav</h2>
-        <input type="text" id="searchInput" placeholder="Enter JIRA search query...">
-        <button onclick="performSearch()">Search</button>
+    <header>
+        <h1>Customer Self-Service Portal</h1>
+    </header>
 
-        <!-- Results will be displayed here -->
-        <div id="searchResults"></div>
+    <section>
+        <h2>Raise a Request</h2>
+        <form id="requestForm">
+            <label for="customerName">Your Name:</label>
+            <input type="text" id="customerName" name="customerName" required>
 
-        <script>
-            function performSearch() {
-                // Get the search query from the input
-                var searchQuery = document.getElementById('searchInput').value;
+            <label for="requestType">Request Type:</label>
+            <input type="text" id="requestType" name="requestType" required>
 
-                // Perform your JIRA search logic here
-                // You may use AJAX or fetch to communicate with your JIRA API
+            <label for="requestDetails">Request Details:</label>
+            <textarea id="requestDetails" name="requestDetails" rows="4" required></textarea>
 
-                // For demonstration purposes, let's just display the query
-                displayResults('Search Results: ' + searchQuery);
-            }
+            <button type="button" onclick="submitRequest()">Submit Request</button>
+        </form>
+    </section>
 
-            function displayResults(results) {
-                // Display the results in the designated div
-                document.getElementById('searchResults').innerHTML = '<p>' + results + '</p>';
-            }
-        </script>
-    </div>
+    <section>
+        <h2>Track Your Requests</h2>
+        <p>Enter your request ID to track the status:</p>
+        <form id="trackForm">
+            <label for="requestID">Request ID:</label>
+            <input type="text" id="requestID" name="requestID" required>
+
+            <button type="button" onclick="trackStatus()">Track Status</button>
+        </form>
+        <div id="statusResult"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Customer Self-Service Portal</p>
+    </footer>
+
+    <script>
+        function submitRequest() {
+            // Add logic to submit the request to the server and integrate with JIRA API
+            alert('Request submitted successfully!');
+            document.getElementById('requestForm').reset();
+        }
+
+        function trackStatus() {
+            // Add logic to track the status using the request ID and JIRA API
+            const requestID = document.getElementById('requestID').value;
+            // Display the status (for demo purposes)
+            document.getElementById('statusResult').innerHTML = `Status for Request ID ${requestID}: In Progress`;
+        }
+    </script>
 </body>
 </html>
